@@ -136,9 +136,6 @@ local function fixerFunc2()
           end
       end
 
-
-      
-      
       -- params: [intensity, cid, name]
       BWOEvents.SpawnGroup = function(params)
           local player = getSpecificPlayer(0)
@@ -257,8 +254,6 @@ local function fixerFunc2()
           end
       end
       
-
-
       -- params: []
       BWOEvents.Start = function(params)
           local player = getSpecificPlayer(0)
@@ -477,20 +472,6 @@ local function fixerFunc2()
           BWOScheduler.Add("Say", {txt="TIP: Press \"T\" to chat with other people."}, 32000)
           -- BWOScheduler.Add("Say", {txt="TIP: Press \"T\" to chat with other people."}, 41000)
       end
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
       
     end
   end
@@ -502,6 +483,9 @@ end
 
 local onTickZZD = function(numTicksInZZD) 
     if numTicksInZZD % 2 == 0 or numTicksInZZD % 2 ~= 0 then
+    
+        -- fixerFunc2 is just a safety measure that's a wrapper/intercept on some BWOEVents global functions within "Week One". It's just here to DOUBLY Make sure that certain BWOEvents functions that get called dont create TOO MANY npcs of certain types like priests or army to doubly ensure that each player only gets their starting stuff (like money, items and vehicle) ONCE per character:
+    
         fixerFunc2()
     end
 end
